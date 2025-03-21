@@ -1,4 +1,4 @@
-﻿using System;
+﻿uusing System;
 
 namespace calculadora.ConsoleApp1
 {
@@ -10,9 +10,9 @@ namespace calculadora.ConsoleApp1
             //vetores
             string[] historicoOperacaoes = new string[100];
 
-            historicoOperacaoes[0]
+            int contadorhistoricos = 0;
 
-            while(true)
+            while (true)
             {
                 Console.Clear();
 
@@ -72,7 +72,21 @@ namespace calculadora.ConsoleApp1
                         Console.WriteLine(linhaDaTabuada);
                     }
 
-                        Console.ReadLine();
+                    Console.ReadLine();
+                    continue;
+                }
+                if (opcao == "H")
+                {
+
+                    Console.WriteLine("O-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-O");
+                    Console.WriteLine("-----------------Histórico-----------------");
+                    Console.WriteLine("O-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-O");
+
+                    for (int contador = 0; contador < contadorhistoricos; contador++)
+                    {
+                        Console.WriteLine(historicoOperacaoes[contador]);
+                    }
+                    Console.ReadLine();
                     continue;
                 }
 
@@ -100,44 +114,55 @@ namespace calculadora.ConsoleApp1
 
 
                 //estrutura de  decição
+
                 if (opcao == "+")
                 {
                     //soma
                     resultado = numero1 + numero2;
+                    historicoOperacaoes[contadorhistoricos] = $"{numero1}+{numero2}= {resultado}";
                 }
                 else if (opcao == "-")
                 {
                     //subtração
                     resultado = numero1 - numero2;
+                    historicoOperacaoes[contadorhistoricos] = $"{numero1}-{numero2}= {resultado}";
                 }
                 else if (opcao == "*")
                 {
                     //multiplicação
                     resultado = numero1 * numero2;
+                    historicoOperacaoes[contadorhistoricos] = $"{numero1}*{numero2}= {resultado}";
                 }
                 else if (opcao == "/")
                 {
                     //divisão
 
-                    if(numero2== 0 )
+                    if (numero2 == 0)
                     {
                         Console.Write("---------------------------------");
                         Console.Write("(Não é possivem dividir por zero)");
                         Console.Write("---------------------------------");
-                       Console.ReadLine();
-                      continue;
+                        Console.ReadLine();
+
+                        historicoOperacaoes[contadorhistoricos] = $"{numero1}/{numero2}= {resultado}";
+
+                        continue;
                     }
+                    else
+                        continue;
+
 
                     resultado = numero1 / numero2;
                 }
-              
 
 
-                    Console.WriteLine("------------------------------------------");
+
+                Console.WriteLine("------------------------------------------");
 
 
                 Console.WriteLine("Resultado: " + resultado);
 
+                contadorhistoricos++;
 
                 Console.ReadLine();
             }
